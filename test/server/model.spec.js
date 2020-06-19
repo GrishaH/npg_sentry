@@ -34,7 +34,7 @@ describe('model', function() {
     tmpdir = tmpobj.name;
     test_utils.start_database(tmpdir, PORT);
     p_db = MongoClient.connect(`mongodb://localhost:${PORT}/test`);
-    p_db.then(done);
+    process.nextTick(p_db.then(done));
   }, 25000);
 
   afterAll(function(done) {
