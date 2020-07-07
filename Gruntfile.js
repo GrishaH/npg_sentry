@@ -95,12 +95,23 @@ module.exports = function(grunt) {
         },
         src: ['lib/**/*.js']
       }
+    },
+    shell: {
+        jasmine_solo: {
+            command: [
+                'jasmine test/server/acl.spec.js',
+                'test/server/model.spec.js',
+                'test/server/secure_server.spec.js',
+                'test/server/server.spec.js'
+                ].join(' ')
+        }
     }
   });
 
-  grunt.registerTask('default', ['test']);
+  grunt.registerTask('default', ['jasmine_single']);
   grunt.registerTask('lint', ['eslint']);
   grunt.registerTask('test', ['jsonlint', 'lint', 'jasmine_node:only_test', 'qunit']);
   grunt.registerTask('test_coverage', ['lint', 'clean:coverage', 'jasmine_node:coverage', 'qunit']);
   grunt.registerTask('minify', ['newer:uglify', 'newer:cssmin']);
+  grunt.registerTask('jasmine_single', ['shell']);
 };
