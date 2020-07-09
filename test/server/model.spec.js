@@ -12,7 +12,7 @@ let PORT = Math.floor(Math.random() * PORT_RANGE) + BASE_PORT;
 
 const constants  = require('../../lib/constants');
 const test_utils = require('./test_utils');
-let config = require('../../lib/config');
+const config = require('../../lib/config');
 
 let dbConn;
 let model;
@@ -49,6 +49,7 @@ describe('model', function() {
 
   describe('DbError', function() {
     it('is a subclass of Error', function() {
+      console.log("inside first it");
       let err = new dbConn.DbError('something bad');
       expect(err.name).toBe('DbError');
       expect(err instanceof dbConn.DbError).toBe(true);
